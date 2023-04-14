@@ -44,5 +44,7 @@ private:
 	void setBoard(const std::string&);
 	void updateBoard(const Location&, const Location&); 
 	bool isValidMove(const Location&, const Location&) const; 
-	bool isCleanPath(const Location&, const Location&, const Path&) const;
+	bool isCleanPath(const Location&, const Location&) const;
+	bool horizontalPath(const Location&, const Location&) const;
+	bool verticalPath(const Location&, const Location&) const;
 };

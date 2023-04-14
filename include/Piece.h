@@ -13,11 +13,11 @@ public:
 	Piece(const char);
 	virtual ~Piece() = default;
 
-	virtual Path move(const Location&, const Location&) = 0;
+	virtual bool move(const Location&, const Location&) const = 0;
 	bool isMyTurn(const bool) const;
-	void toString() {
-		std::cout << m_sign << " " << m_color ? "white" : "black";
-	}
+	const bool getColor() const; 
+	bool operator==(const Piece*)const;
+	void toString()	const; 
 
 protected:
 	const char getSign() const;

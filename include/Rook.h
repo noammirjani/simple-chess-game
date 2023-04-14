@@ -6,10 +6,9 @@
 class Rook : public Piece {
 public:
     Rook(char);
-    Path move(const Location&, const Location&) override;
+    bool move(const Location&, const Location&) const override;
 
 private:
     static bool m_creator;
-
 
 };

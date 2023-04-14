@@ -16,6 +16,22 @@ bool Piece::isMyTurn(const bool realTurnColor) const {
 	return m_color == realTurnColor; 
 }
 
+const bool Piece::getColor() const
+{
+	return m_color;
+}
+
+
+bool Piece::operator==(const Piece* other) const {
+
+	return other && m_color == other->getColor();
+}
+
+
+void Piece::toString() const{
+	std::cout << m_sign << " " << (m_color) ? "white" : "black";
+}
+
 //PlayerType::E_Color Piece::getColor(const char sign) const {
 //	return std::isupper(sign) ? PlayerColor::black : PlayerColor::white;
 //}

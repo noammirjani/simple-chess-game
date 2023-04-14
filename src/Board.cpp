@@ -15,8 +15,8 @@ Board::Board(const std::string& boardSTR) {
 
 
 void Board::setBoard(const std::string& board){ 
-	m_board.clear();
 
+	m_board.clear();
 
 	for (auto row = 0, index = 0; row < 8; ++row) {
 		PiecePtrArray temp;
@@ -40,28 +40,18 @@ int Board::codeResponseOfMove(const std::string& moveInput) {
 	if (m_board[src.row][src.col]->isMyTurn(m_playerTurn))
 		return (int)PossibleErrors::PIECE_OF_OPPONENT;
 
-
-
-	/*
-	if (*m_board[src.row][src.col] == *m_board[dest.row][dest.col])
+	if (*m_board[src.row][src.col] == m_board[dest.row][dest.col].get())
 		return (int)PossibleErrors::SAME_COLOR_PIECES;
 
-	if(!isValidMove(src, dest))
+	if (!isValidMove(src, dest))
 		return (int)PossibleErrors::ILLIGAL_MOVEMENT;
-
-	
-
-	//isCheckmate = isCheck(); 
-	if (m_board[dest.row][dest.col] != nullptr)
-		m_board[dest.row][dest.col] = nullptr; 
-	m_playerTurn = !m_playerTurn;
-	// return isCheckmate ? 41 : 42; 
-
-	*/
 
 	updateBoard(src, dest); 
 
-	m_playerTurn = !m_playerTurn; 
+	//isCheckmate = isCheck(); 
+	m_playerTurn = !m_playerTurn;
+	// return isCheckmate ? 41 : 42; 
+
 	return 42; 
 }
 
@@ -73,55 +63,51 @@ void Board::updateBoard(const Location& src, const Location& dest) {
 	
 }
 
-//bool Board::isValidMove(const Location& src, const Location& dest) const
-//{
-//	auto path = m_board[src.row][src.col]->move(src, dest);
-//	
-//	return isCleanPath(src, dest, path); 
-//}
-//
-//
-//bool Board::isCleanPath(const Location& src, const Location& dest, const Path& path) const
-//{
-//	switch (path)
-//	{
-//	case Path::HORIZONTAL: {
-//		int start = std::min(src.row, dest.row);
-//		int end = std::max(src.row, dest.row);
-//		for (int row = start + 1; row < end; ++row)
-//		{
-//			if (m_board[row][src.col] != nullptr)
-//			{
-//				return false;
-//			}
-//		}
-//		return true;
-//	}
-//
-//	case Path::VERTICAL: {
-//		int start = std::min(src.col, dest.col);
-//		int end = std::max(src.col, dest.col);
-//		for (int col = start + 1; col < end; ++col)
-//		{
-//			if (m_board[src.row][col] != nullptr)
-//			{
-//				return false;
-//			}
-//		}
-//		return true;
-//	}
-//
-//	case Path::DIAGONAL:
-//		break;
-//
-//	case Path::STEPS:
-//		return true;
-//
-//	case Path::NONE:
-//	default:
-//		return false; 
-//	}
-//
-//	return false;
-//}
-//
+bool Board::isValidMove(const Location& src, const Location& dest) const
+{
+	return m_board[src.row][src.col]->move(src, dest) && isCleanPath(src, dest);
+}
+
+
+bool Board::isCleanPath(const Location& src, const Location& dest) const {
+
+	return horizontalPath(src, dest) || verticalPath(src, dest);
+}
+
+
+
+bool Board::horizontalPath(const Location& src, const Location& dest) const {
+
+	int start = std::min(src.col, dest.col);
+	int end = std::max(src.col, dest.col);
+
+	if (start == end) return false; 
+
+	for (int col = start + 1; col < end; ++col)
+	{
+		if (m_board[src.row][col] != nullptr)
+		{
+			return false;
+		}
+	}
+	return true;
+}
+
+
+bool Board::verticalPath(const Location& src, const Location& dest) const {
+
+	int start = std::min(src.row, dest.row);
+	int end = std::max(src.row, dest.row);
+
+	if (start == end) return false;
+
+	for (int row = start + 1; row < end; row++)
+	{
+		if (m_board[row][src.col] != nullptr)
+		{
+			return false;
+		}
+	}
+
+	return true;
+}

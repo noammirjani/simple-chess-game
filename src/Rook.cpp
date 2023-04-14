@@ -10,16 +10,9 @@ Rook::Rook(char sign)
 {}
 
 
-Path Rook::move(const Location& src, const Location& dest)
+bool Rook::move(const Location& src, const Location& dest) const
 {
-    std::vector<Location> path; 
-
     auto dirX = std::abs(src.col - dest.col), dirY = std::abs(src.row - dest.row); 
-
-    if ((dirX && !dirY) || (!dirX && dirY)) {
-
-        return (src.row != dest.row) ? Path::HORIZONTAL : Path::VERTICAL;
-    }
     
-    return Path::NONE; 
+    return (dirX && !dirY) || (!dirX && dirY);
 }
