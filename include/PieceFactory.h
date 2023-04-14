@@ -3,24 +3,22 @@
 #include <utility>
 #include <memory>
 #include <cctype>
+#include <functional>
 #include "Piece.h"
 
-
-
 class PieceFactory {
-
 public:
-	using pieceCreator = std::unique_ptr<Piece>(*)(const char);
+    using PiecePtr = std::unique_ptr<Piece>;
+    using PieceCreator = std::function<PiecePtr(const char&)>;
 
-	static PieceFactory& getFactoryInstance();
-	std::unique_ptr<Piece> create(const char sign);
-	void addCreator(const char key, pieceCreator func);
+    static PieceFactory& getFactory();
+    PiecePtr create(const char& sign);
+    bool addCreator(const char& key, PieceCreator func);
 
 private:
-	std::unordered_map<char, pieceCreator> m_creator; 
-	
-	//ctor copt-ctor and operator=a
-	PieceFactory() = default; 
-	PieceFactory(const PieceFactory&) = delete;
-	PieceFactory& operator=(const PieceFactory&) = delete;
+    std::unordered_map<char, PieceCreator> m_creator;
+
+    PieceFactory() = default;
+    PieceFactory(const PieceFactory&) = delete;
+    PieceFactory& operator=(const PieceFactory&) = delete;
 };
