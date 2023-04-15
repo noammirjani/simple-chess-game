@@ -1,5 +1,6 @@
 #include "Bishop.h"
 
+// add the key and value of the piece to the factory
 bool Bishop::m_creator = PieceFactory::getFactory().addCreator(
     'b', [](const char& sign) { return std::make_unique<Bishop>(sign); });
 

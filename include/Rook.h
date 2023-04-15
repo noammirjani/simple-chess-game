@@ -6,7 +6,7 @@
 
 class Rook : public Piece {
 public:
-    Rook(char);
+    Rook(const char = 'r');
     bool move(const Location&, const Location&) const override;
 
 private:

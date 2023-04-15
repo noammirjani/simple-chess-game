@@ -3,6 +3,10 @@
 											"Piece.cpp"
 											"PieceFactory.cpp" 
 											"Board.cpp"
+
 											"Rook.cpp" 
 											"King.cpp"
-											"Bishop.cpp")
+											"Bishop.cpp"
+											"Queen.cpp" 
+											"Knight.cpp" 
+											"Pawn.cpp")

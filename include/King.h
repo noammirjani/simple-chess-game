@@ -6,7 +6,7 @@
 
 class King : public Piece {
 public:
-    King(char);
+    King(const char = 'k');
     bool move(const Location&, const Location&) const override;
 
 private:

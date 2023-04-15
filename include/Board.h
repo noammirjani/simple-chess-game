@@ -38,7 +38,7 @@ public:
 	using PiecePtrArray = std::vector<PiecePtr>;
 	using ChessMatrix = std::vector<PiecePtrArray>;
 
-	Board();
+
 	Board(const std::string&);
 	~Board() = default; 
  
@@ -54,6 +54,7 @@ private:
 	void updateBoard(const Location&, const Location&); 
 
 	//path checking
+	bool noNeedToCheckPath(const Location&)const;
 	bool isValidMove(const Location&, const Location&) const;
 	bool isCleanPath(const Location&, const Location&) const;
 	bool horizontalPath(const Location&, const Location&) const;

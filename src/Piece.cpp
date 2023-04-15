@@ -2,49 +2,39 @@
 
 
 Piece::Piece(const char pieceSign)
-	:m_sign(pieceSign), m_color(std::isupper(pieceSign)){}
+	:m_sign(pieceSign), m_color(std::isupper(pieceSign)) {}
 
 
+// returns the true original of the piece 
 const char Piece::getSign() const {
 
 	return m_sign;
 }
 
 
+// gets boolean that represents the current turn, checks if the 
+// piece are in the same team 
 bool Piece::isMyTurn(const bool realTurnColor) const {
 
-	return m_color == realTurnColor; 
+	return m_color == realTurnColor;
 }
 
+//reurn boolean that represents the team of the piece
 const bool Piece::getColor() const
 {
 	return m_color;
 }
 
 
+//overloading perator ==, checks if the pieces are from the same team
+// does not check if the are the same exact piece!
 bool Piece::operator==(const Piece* other) const {
 
 	return other && m_color == other->getColor();
 }
 
 
-void Piece::toString() const{
+// print the data of te piece 
+void Piece::toString() const {
 	std::cout << m_sign << " " << (m_color) ? "white" : "black";
 }
-
-//PlayerType::E_Color Piece::getColor(const char sign) const {
-//	return std::isupper(sign) ? PlayerColor::black : PlayerColor::white;
-//}
-//
-//bool Piece::operator==(const Piece* other) {
-//	if (other == nullptr) return false; 
-//
-//	//return if the two pieces are from the same team
-//	return (std::isupper(m_sign) && std::isupper(other->m_sign));
-//}
-// 
-//
-//bool Piece::isMyTurn(const PlayerType& realTurn)
-//{
-//	return realTurn == m_typeOfPlayer;
-//}

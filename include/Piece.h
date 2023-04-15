@@ -1,8 +1,7 @@
 #pragma once
 #include <iostream>
-#include <cctype>
-#include <list>
 #include "Location.h"
+
 
 class Board; 
 class PieceFactory; 
@@ -13,60 +12,22 @@ public:
 	Piece(const char);
 	virtual ~Piece() = default;
 
+	// pure virtal function
 	virtual bool move(const Location&, const Location&) const = 0;
+
+	//informatical functions
 	bool isMyTurn(const bool) const;
 	const bool getColor() const; 
-	bool operator==(const Piece*)const;
 	void toString()	const; 
 	const char getSign() const;
 
+	//overloading operator
+	bool operator==(const Piece*)const;
+
 protected:
-	
+	const bool m_color;
 
 private:
 	const char m_sign; 
-	const bool m_color; 
 
 };
-
-
-//class PlayerType
-//{
-//public:
-//	enum class E_Color { 
-//		white, black, None
-//	};
-//
-//	PlayerType(E_Color color) : m_color(color) {}
-//
-//	void operator=(const E_Color& otherColor)
-//	{
-//		this->m_color = otherColor;
-//	}
-//
-//	E_Color getColor() {
-//		return m_color;
-//	}
-//
-//	bool operator==(const PlayerType& otherPlayer)
-//	{
-//		return m_color == otherPlayer.m_color;
-//	}
-//
-//	PlayerType& operator!() {
-//		if (m_color == E_Color::white)
-//		{
-//			this->m_color = E_Color::black;
-//		}
-//		else {
-//			this->m_color = E_Color::white;
-//		}
-//		return *this;
-//	}
-//
-//
-//private:
-//	E_Color m_color = E_Color::None;
-//
-//};
-

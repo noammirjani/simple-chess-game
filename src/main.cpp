@@ -4,9 +4,9 @@
 
 int main()
 {
-//	string board = "RNBQKBNRPPPPPPPP################################pppppppprnbqkbnr"; 
-	string board = "#####B####K###############################R#############rbr#####";
-//	string board = "R###K##R################################################r###k##r";
+	string board = "RNBQKBNRPPPPPPPP################################pppppppprnbqkbnr"; 
+//	string board = "#####B####K###############################R#############rbr#####";
+//	string board = "RNBQKBNR################################################rnbqkbnr";
 	Chess a(board);
 	int codeResponse = 0;
 	string res = a.getInput();
@@ -27,11 +27,10 @@ int main()
 		*/
 
 		/**/ 
-		{ // put your code here instead that code
+		{ 
 			static Board boardPtr(board);
 			codeResponse = boardPtr.codeResponseOfMove(res); 
-			//cout << "code response >> ";
-			//cin >> codeResponse;
+
 		}
 		/**/
 

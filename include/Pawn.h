@@ -4,9 +4,9 @@
 #include "PieceFactory.h"
 
 
-class Bishop : public Piece {
+class Pawn : public Piece {
 public:
-    Bishop(const char = 'b');
+    Pawn(const char = 'p');
     bool move(const Location&, const Location&) const override;
 
 private:

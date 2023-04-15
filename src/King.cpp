@@ -1,5 +1,6 @@
 #include "King.h"
 
+// add the key and value of the piece to the factory
 bool King::m_creator = PieceFactory::getFactory().addCreator(
     'k', [](const char& sign) { return std::make_unique<King>(sign); });
 

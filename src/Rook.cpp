@@ -1,5 +1,6 @@
 #include "Rook.h"
 
+// add the key and value of the piece to the factory
 bool Rook::m_creator = PieceFactory::getFactory().addCreator(
     'r', [](const char& sign) { return std::make_unique<Rook>(sign); });
 
