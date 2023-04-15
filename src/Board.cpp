@@ -18,10 +18,10 @@ void Board::setBoard(const std::string& board){
 
 	m_board.clear();
 
-	for (auto row = 0, index = 0; row < SIZE; ++row) {
+	for (auto row = 0, index = 0; row < m_SIZE; ++row) {
 		PiecePtrArray temp;
 		
-		for (auto col = 0; col < SIZE; ++col, ++index) {
+		for (auto col = 0; col < m_SIZE; ++col, ++index) {
 			temp.emplace_back(PieceFactory::getFactory().create(board[index]));
 		}
 
@@ -150,9 +150,9 @@ std::optional<Location> Board::getKingLocation(const bool team) const {
 
 	const char WantedKing = team ? 'K' : 'k';
 
-	for (auto row = 0; row < SIZE; ++row)
+	for (auto row = 0; row < m_SIZE; ++row)
 	{
-		for (auto col = 0; col < SIZE; ++col)
+		for (auto col = 0; col < m_SIZE; ++col)
 		{
 			if (m_board[row][col] != nullptr &&
 				m_board[row][col]->getSign() == WantedKing &&
@@ -181,7 +181,7 @@ bool Board::isSelfCheck(const Location& src, const Location& dest){
 
 bool Board::isCheck(const Location& targetKing, const bool currTeam)const {
 
-	for (auto row = 0; row < SIZE; ++row)
+	for (auto row = 0; row < m_SIZE; ++row)
 	{
 		for (auto col = 0; col < m_board[row].size(); ++col)
 		{

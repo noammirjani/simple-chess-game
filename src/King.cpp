@@ -22,22 +22,3 @@ bool King::move(const Location& src, const Location& dest) const
 
     return (row_diff <= 1 && col_diff <= 1);
 }
-//bool King::move(const Location& src, const Location& dest) const
-//{
-//    const int possibleOptions[3] = { -1,0,1 }; 
-//
-//    for (auto& row : possibleOptions)
-//    {
-//        for (auto& col : possibleOptions)
-//        {
-//            if (row == 0 && col == 0) continue;
-//
-//            if (src.col + col == dest.col && src.row + row == dest.row)
-//            {
-//                return true;
-//            }
-//        }
-//    }
-//        
-//    return false;
-//}
