@@ -20,16 +20,24 @@ Pawn::Pawn(char sign)
 //  ~ ~ ~  
 bool Pawn::move(const Location& src, const Location& dest) const
 {
-    auto rowDiff = dest.row - src.row;
-    if (rowDiff != 0) return false;
+    //can only walk strait
+    auto colDiff = dest.col - src.col;
+    if (colDiff != 0) return false;
 
-    auto colDiff = std::abs(dest.col - src.col);
+
+    auto rowDiff = dest.row - src.row;
     auto startRowPawn = m_color ? 1 : 6;
 
-
-    if (src.row == startRowPawn && colDiff <= 2)
+    // moving one step forward
+    if ((m_color && rowDiff == 1) || (!m_color && rowDiff == -1))
         return true;
 
+    // starting position - can move 2 steps forward 
+    if (src.row == startRowPawn) {
+        if ((m_color && rowDiff == 2) || (!m_color && rowDiff == -2))
+            return true;
+    }
 
-    return colDiff <= 1;
+
+    return false;
 }
