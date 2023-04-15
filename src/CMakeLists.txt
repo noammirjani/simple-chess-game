@@ -3,4 +3,4 @@
 											"Piece.cpp"
 											"PieceFactory.cpp" 
 											"Board.cpp"
-											"Rook.cpp" "../include/Location.h")
+											"Rook.cpp" "../include/Location.h" "../include/King.h" "King.cpp")

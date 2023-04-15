@@ -2,17 +2,12 @@
 #include <string>
 
 struct Location {
-
+	Location() = default;
 	Location(std::string dot) : row(dot[0] - 'a'), col(dot[1] - '1') {}
 	Location(const int r, const int c) : row(r), col(c) {}
 
-	int row;
-	int col;
-
-	Location operator-(const Location& other) {
-		return { row - other.row, col - other.col };
-	}
-
+	int row = 0;
+	int col = 0;
 };
 
 

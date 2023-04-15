@@ -4,12 +4,16 @@
 #include "PieceFactory.h"
 
 
-class Rook : public Piece {
+class King : public Piece {
 public:
-    Rook(char);
+    King(char);
     bool move(const Location&, const Location&) const override;
 
 private:
     static bool m_creator;
+
+    //(0,1)         (0,-1)
+    //(1,0)   (1,1) (1,-1)
+    //(-1,0) (-1,1) (-1,-1)
 
 };

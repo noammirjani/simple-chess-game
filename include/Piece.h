@@ -18,9 +18,10 @@ public:
 	const bool getColor() const; 
 	bool operator==(const Piece*)const;
 	void toString()	const; 
+	const char getSign() const;
 
 protected:
-	const char getSign() const;
+	
 
 private:
 	const char m_sign; 
