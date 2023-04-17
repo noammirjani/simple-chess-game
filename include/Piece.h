@@ -12,8 +12,10 @@ public:
 	Piece(const char);
 	virtual ~Piece() = default;
 
-	// pure virtal function
+	// pure virtal function - gets: src and dest location - checks the base and original moves 
 	virtual bool move(const Location&, const Location&) const = 0;
+	// virtual function - checks if the piece and capture in a special move
+	virtual bool canMoveToCapture(const Location&, const Location&)const { return false;  }
 
 	//informatical functions
 	bool isMyTurn(const bool) const;

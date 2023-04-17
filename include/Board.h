@@ -54,6 +54,7 @@ private:
 	void updateBoard(const Location&, const Location&); 
 
 	//path checking
+	bool occupiedDest(const Location&) const;
 	bool noNeedToCheckPath(const Location&)const;
 	bool isValidMove(const Location&, const Location&) const;
 	bool isCleanPath(const Location&, const Location&) const;

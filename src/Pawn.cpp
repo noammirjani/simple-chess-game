@@ -38,6 +38,19 @@ bool Pawn::move(const Location& src, const Location& dest) const
             return true;
     }
 
-
     return false;
 }
+
+
+
+//can move to the destnation location if it is one step diagonally forward or dia
+bool Pawn::canMoveToCapture(const Location& src, const Location& dest) const
+{
+    auto rowDiff = dest.row - src.row;
+    auto colDiff = std::abs(dest.col - src.col);
+
+    // Check if the destination is a diagonal location
+    return (colDiff == 1 && rowDiff == (m_color ? 1 : -1));
+}
+
+

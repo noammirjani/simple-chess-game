@@ -1,6 +1,6 @@
 #include "Board.h"
 
-
+//c-tor
 Board::Board(const std::string& boardSTR) {
 	setBoard(boardSTR);
 	m_playerTurn = White;
@@ -65,7 +65,17 @@ void Board::updateBoard(const Location& src, const Location& dest) {
 // helper function that checks if the path between two locations is clear
 bool Board::isValidMove(const Location& src, const Location& dest) const
 {
-	return m_board[src.row][src.col]->move(src, dest) && isCleanPath(src, dest);
+	auto move = m_board[src.row][src.col]->move(src, dest); 
+	auto capture = occupiedDest(dest) && m_board[src.row][src.col]->canMoveToCapture(src, dest);
+	return (move || capture) && isCleanPath(src, dest); 
+
+}
+
+
+//Helper function - checks if the destination is occupied by a piece belonging to the other team
+bool Board::occupiedDest(const Location& dest)const{
+	return m_board[dest.row][dest.col] != nullptr &&
+		   m_board[dest.row][dest.col]->isMyTurn(!m_playerTurn);
 }
 
 
@@ -78,6 +88,8 @@ bool Board::isCleanPath(const Location& src, const Location& dest) const {
 
 
 // helper function that determines if a path needs to be checked
+// use of the piece function get sign instead of rtti for saving 
+// the overhead of rtti function in every iteration in game loop 
 bool Board::noNeedToCheckPath(const Location& src) const {
 	char currKnight = m_playerTurn ? 'N' : 'n';
 	return m_board[src.row][src.col]->getSign() == currKnight;
@@ -134,6 +146,7 @@ bool Board::diagonalPath(const Location& src, const Location& dest) const {
 	int rowDiff = std::abs(dest.row - src.row);
 	int colDiff = std::abs(dest.col - src.col);
 	if (rowDiff != colDiff) return false;
+	if (rowDiff == 1) return true; //one step dagonal - no need to check 
 
 	//check if clear path 
 	int rowStart = std::min(src.row, dest.row);
