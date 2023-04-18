@@ -16,6 +16,8 @@ public:
 	virtual bool move(const Location&, const Location&) const = 0;
 	// virtual function - checks if the piece and capture in a special move
 	virtual bool canMoveToCapture(const Location&, const Location&)const { return false;  }
+	// virtual function - returns if for a spasific move of a piece there is need to check if the path is clear
+	virtual bool needToCheckPath()const { return true; }
 
 	//informatical functions
 	bool isMyTurn(const bool) const;

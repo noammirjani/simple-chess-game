@@ -81,18 +81,9 @@ bool Board::occupiedDest(const Location& dest)const{
 
 // check if the movement is valid based on the current state of the board 
 bool Board::isCleanPath(const Location& src, const Location& dest) const {
-
-	if (noNeedToCheckPath(src)) return true;
+	// there are pieces that doesnt need to check path in there movment like knight
+	if (!m_board[src.row][src.col]->needToCheckPath()) return true;
 	return horizontalPath(src, dest) || verticalPath(src, dest) || diagonalPath(src, dest);
-}
-
-
-// helper function that determines if a path needs to be checked
-// use of the piece function get sign instead of rtti for saving 
-// the overhead of rtti function in every iteration in game loop 
-bool Board::noNeedToCheckPath(const Location& src) const {
-	char currKnight = m_playerTurn ? 'N' : 'n';
-	return m_board[src.row][src.col]->getSign() == currKnight;
 }
 
 

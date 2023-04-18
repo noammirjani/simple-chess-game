@@ -25,3 +25,8 @@ bool Knight::move(const Location& src, const Location& dest) const
 
     return (rowDiff == 2 && coldiff == 1) || (rowDiff == 1 && coldiff == 2);
 }
+
+bool Knight::needToCheckPath() const
+{
+    return false;
+}
